@@ -1,0 +1,41 @@
+definitions:
+  handler.URLRequest:
+    properties:
+      url:
+        type: string
+    type: object
+  handler.URLResponse:
+    properties:
+      shortened_url:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /shorten:
+    post:
+      consumes:
+      - application/json
+      description: Generates a shortened URL for the provided URL
+      parameters:
+      - description: Request Payload
+        in: body
+        name: urlRequest
+        required: true
+        schema:
+          $ref: '#/definitions/handler.URLRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.URLResponse'
+        "400":
+          description: Invalid request
+          schema:
+            type: string
+      summary: Shorten a URL
+      tags:
+      - URL
+swagger: "2.0"

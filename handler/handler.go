@@ -36,6 +36,15 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // ShortenHandler handles the shortening of the URL
+// @Summary Shorten a URL
+// @Description Generates a shortened URL for the provided URL
+// @Tags URL
+// @Accept  json
+// @Produce  json
+// @Param   urlRequest body URLRequest true "Request Payload"
+// @Success 200 {object} URLResponse
+// @Failure 400 {string} string "Invalid request"
+// @Router /shorten [post]
 func ShortenHandler(w http.ResponseWriter, r *http.Request) {
 	var urlReq URLRequest
 	body, err := ioutil.ReadAll(r.Body)
